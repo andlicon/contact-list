@@ -2,19 +2,20 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 
 const initialValues = {
-  fullName: '',
-  email: '',
-  phone: '',
-  address: ''
+  "full_name": '',
+  "email": '',
+  "phone": '',
+  "address": ''
 };
 
 const AddNew = () => {
   // hooks
   const [state, setState] = useState({
-    fullName: initialValues.fullName,
-    email: initialValues.email,
-    phone: initialValues.phone,
-    address: initialValues.address
+    "full_name": initialValues.full_name,
+    "email": initialValues.email,
+    "phone": initialValues.phone,
+    "agenda_slug": 'andreszabala',
+    "address": initialValues.address
   });
 
   const handlerInputChange = ({ target }) => {
@@ -25,6 +26,28 @@ const AddNew = () => {
       ...state,
       [input]: newValue
     });
+  }
+
+  const handlerOnClick = async () => {
+    console.log(state);
+
+    try {
+      const response = await fetch('https://assets.breatheco.de/apis/fake/contact/', {
+        method: 'POST',
+        headers: {
+          'Content-type': 'application/json'
+        },
+        body: JSON.stringify(state)
+      })
+      const data = await response.json();
+
+      if (!response.ok) throw new Error(data.msg);
+
+      console.log('Contact sucessfull added');
+    }
+    catch (error) {
+      console.log(error.message);
+    }
   }
 
   return (
@@ -41,7 +64,7 @@ const AddNew = () => {
           <input
             type='text'
             id='fullName'
-            name='fullName'
+            name='full_name'
             onChange={handlerInputChange}
             value={state.fullName}
             className='form-control w-100' />
@@ -90,7 +113,8 @@ const AddNew = () => {
         </div>
         <button
           type='button'
-          className='btn btn-primary w-100'>
+          className='btn btn-primary w-100'
+          onClick={handlerOnClick}>
           save
         </button>
       </form>
