@@ -2,6 +2,7 @@ import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import ScrollToTop from "./component/scrollToTop.js";
 
+import AddNew from './views/AddNew.jsx';
 import Contact from "./views/Contact.jsx";
 import injectContext from "./store/appContext.js";
 
@@ -17,6 +18,7 @@ const Layout = () => {
 				<ScrollToTop>
 					<Routes>
 						<Route path="/" element={<Contact />} />
+						<Route path="/add" element={<AddNew />} />
 						<Route path="*" element={<h1>Not found!</h1>} />
 					</Routes>
 				</ScrollToTop>
