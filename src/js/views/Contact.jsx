@@ -7,7 +7,7 @@ const Contact = () => {
   return (
     <>
       <Link
-        className='btn btn-success my-3'
+        className='btn btn-success my-3 to-right'
         to='./add'>
         Add new contact
       </Link>
