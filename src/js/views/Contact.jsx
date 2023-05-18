@@ -11,6 +11,9 @@ const Contact = () => {
         to='./add'>
         Add new contact
       </Link>
+      <div className="contact-list">
+
+      </div>
     </>
   );
 };
