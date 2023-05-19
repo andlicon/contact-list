@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { Context } from '../store/appContext';
 
 const initialValues = {
   "full_name": '',
@@ -29,25 +30,8 @@ const AddNew = () => {
   }
 
   const handlerOnClick = async () => {
-    console.log(state);
 
-    try {
-      const response = await fetch('https://assets.breatheco.de/apis/fake/contact/', {
-        method: 'POST',
-        headers: {
-          'Content-type': 'application/json'
-        },
-        body: JSON.stringify(state)
-      })
-      const data = await response.json();
-
-      if (!response.ok) throw new Error(data.msg);
-
-      console.log('Contact sucessfull added');
-    }
-    catch (error) {
-      console.log(error.message);
-    }
+    console.log(Context);
   }
 
   return (
