@@ -13,6 +13,15 @@ const getState = ({ getStore, getActions, setStore }) => {
           .then(response => setStore({ contacts: response }))
           .catch(err => setStore({ error: err.message }));
       },
+      updateContact: id => {
+        console.log('actualizando');
+      },
+      deleteContact: id => {
+        console.log('eliminando');
+      },
+      createContact: bodyContact => {
+        console.log('creando')
+      }
     }
   };
 };
