@@ -1,8 +1,8 @@
 import React, { useContext, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import '../../styles/contact.css';
-
 import { Context } from '../store/appContext';
+import Item from '../component/Item.jsx';
 
 const Contact = () => {
   const { store } = useContext(Context);
@@ -18,12 +18,12 @@ const Contact = () => {
         {
           store.contacts.map((element) => {
             return (
-              <p key={element.id}>
-                {element.full_name}
-                {element.address}
-                {element.email}
-                {element.phone}
-              </p>
+              <Item key={element.id}
+                fullName={element.full_name}
+                address={element.address}
+                email={element.email}
+                phone={element.phone}
+              />
             )
           })
         }
