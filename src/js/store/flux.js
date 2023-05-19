@@ -1,15 +1,17 @@
+import { getAll } from '../util/apiUtil';
+
 const getState = ({ getStore, getActions, setStore }) => {
   return {
     store: {
       contacts: [],
-      agenda: 'andreszabala'
+      agenda: 'andreszabala',
+      error: null
     },
     actions: {
       loadContact: () => {
-        fetch('https://assets.breatheco.de/apis/fake/contact/agenda/andreszabala')
-          .then(response => response.json())
-          .then(data => setStore(data))
-          .catch(error => console.log(error))
+        getAll(`https://assets.breatheco.de/apis/fake/contact/agenda/${getStore().agenda}`)
+          .then(response => setStore({ contacts: response }))
+          .catch(err => setStore({ error: err.message }));
       },
     }
   };

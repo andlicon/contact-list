@@ -5,7 +5,7 @@ import '../../styles/contact.css';
 import { Context } from '../store/appContext';
 
 const Contact = () => {
-  const { actions } = useContext(Context);
+  const { store } = useContext(Context);
 
   return (
     <>
@@ -15,8 +15,19 @@ const Contact = () => {
         Add new contact
       </Link>
       <div className="contact-list">
-
-      </div>
+        {
+          store.contacts.map((element) => {
+            return (
+              <p key={element.id}>
+                {element.full_name}
+                {element.address}
+                {element.email}
+                {element.phone}
+              </p>
+            )
+          })
+        }
+      </div >
     </>
   );
 };
