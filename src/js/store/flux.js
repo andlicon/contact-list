@@ -1,6 +1,7 @@
 import {
   getAll,
-  deleteOne
+  deleteOne,
+  createOne
 } from '../util/apiUtil';
 
 const getState = ({ getStore, getActions, setStore }) => {
@@ -47,7 +48,14 @@ const getState = ({ getStore, getActions, setStore }) => {
         setStore({ ...getStore(), contacts: newContacts });
       },
       createContact: (bodyContact) => {
-        console.log('creando')
+        createOne(getStore().urlBase, bodyContact)
+          .then(response => console.log(response))
+          .catch(err => setStore({
+            alert: {
+              message: err.message,
+              type: false
+            }
+          }))
       }
     }
   };

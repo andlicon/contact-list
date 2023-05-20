@@ -37,6 +37,25 @@ export const deleteOne = async (source) => {
     throw new Error(error.message);
   }
 
-
   return wasDeleted;
 };
+
+export const createOne = async (source, element) => {
+  try {
+    const response = await fetch(source, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(element)
+    });
+
+    const data = await response.json();
+
+    if (!response.ok) throw new Error(data.msg);
+
+  }
+  catch (error) {
+    throw new Error(error.message)
+  }
+}

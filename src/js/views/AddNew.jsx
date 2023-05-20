@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { Context } from '../store/appContext';
 
@@ -19,6 +19,8 @@ const AddNew = () => {
     "address": initialValues.address
   });
 
+  const { actions } = useContext(Context);
+
   const handlerInputChange = ({ target }) => {
     const input = target.name;
     const newValue = target.value;
@@ -30,8 +32,7 @@ const AddNew = () => {
   }
 
   const handlerOnClick = async () => {
-
-    console.log(Context);
+    actions.createContact(state);
   }
 
   return (
@@ -50,7 +51,7 @@ const AddNew = () => {
             id='fullName'
             name='full_name'
             onChange={handlerInputChange}
-            value={state.fullName}
+            value={state.full_name}
             className='form-control w-100' />
         </div>
         <div className='form-group mb-2'>
