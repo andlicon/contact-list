@@ -8,6 +8,7 @@ const Item = ({ fullName,
   address,
   email,
   phone,
+  image = null,
   id }) => {
 
   const modalId = `modalItem${id}`;
@@ -15,7 +16,9 @@ const Item = ({ fullName,
 
   return (
     <div className='item'>
-      <img className='item__image' src="" alt="" />
+      <img className='item__image'
+        src={image ? image : 'https://upload.wikimedia.org/wikipedia/commons/9/99/Sample_User_Icon.png'}
+        alt={`${fullName} image`} />
       <div className="item__content">
         <h2 className='item__titulo'>{fullName}</h2>
         <p className="item__addres">{address}</p>

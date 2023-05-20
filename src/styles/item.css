@@ -35,12 +35,12 @@
   /* caja */
   width: 40%;
   border-radius: 100%;
+  border: 1px solid lightgray;
   max-width: 10em;
   margin-right: 2em;
   /* estilo */
   object-fit: cover;
   object-position: center;
-  background-color: blue;
 }
 
 .item__interact {
