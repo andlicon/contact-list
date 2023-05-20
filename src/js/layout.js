@@ -21,6 +21,7 @@ const Layout = () => {
 						<Route path="/add" element={<AddNew />} />
 						<Route path="*" element={<h1>Not found!</h1>} />
 					</Routes>
+
 				</ScrollToTop>
 			</BrowserRouter>
 		</div>

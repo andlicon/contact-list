@@ -3,7 +3,9 @@ import React from 'react';
 const Modal = ({ modalId, title, body, acceptAction, cancelAction }) => {
 
   const acceptHandler = () => {
-    if (acceptAction) acceptAction();
+    if (acceptAction) {
+      const deleted = acceptAction();
+    }
   }
 
   const cancelHandler = () => {
