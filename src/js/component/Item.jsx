@@ -33,8 +33,10 @@ const Item = ({ fullName,
         </button>
         <button className='item__button'><i className="bi bi-pencil-fill edit"></i></button>
       </div>
-      <Modal modalId={modalId} />
-
+      <Modal
+        modalId={modalId}
+        title='Are you sure?'
+        body='If you delete this thing the entire universe will go down!' />
     </div>
   );
 };
