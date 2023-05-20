@@ -11,10 +11,6 @@ const Item = ({ fullName,
 
   const modalId = `modalItem${id}`;
 
-  const handlerDelete = () => {
-
-  }
-
   return (
     <div className='item'>
       <img className='item__image' src="" alt="" />
@@ -36,7 +32,8 @@ const Item = ({ fullName,
       <Modal
         modalId={modalId}
         title='Are you sure?'
-        body='If you delete this thing the entire universe will go down!' />
+        body='If you delete this thing the entire universe will go down!'
+        acceptAction={() => { console.log('acepted') }} />
     </div>
   );
 };

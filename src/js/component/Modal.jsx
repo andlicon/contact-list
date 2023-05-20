@@ -1,6 +1,14 @@
 import React from 'react';
 
-const Modal = ({ modalId, title, body }) => {
+const Modal = ({ modalId, title, body, acceptAction, cancelAction }) => {
+
+  const acceptHandler = () => {
+    if (acceptAction) acceptAction();
+  }
+
+  const cancelHandler = () => {
+    if (cancelAction) cancelAction();
+  }
 
   return (
     <div className="modal fade" id={modalId} tabIndex="-1" role="dialog" aria-labelledby={`${modalId}Label`} aria-hidden="true">
@@ -16,8 +24,19 @@ const Modal = ({ modalId, title, body }) => {
             {body}
           </div>
           <div className="modal-footer">
-            <button type="button" className="btn btn-secondary" data-dismiss="modal">Oh no!</button>
-            <button type="button" className="btn btn-primary">Yes baby!</button>
+            <button
+              type="button"
+              className="btn btn-secondary"
+              data-dismiss="modal"
+              onClick={cancelHandler}>
+              Oh no!
+            </button>
+            <button
+              type="button"
+              className="btn btn-primary"
+              onClick={acceptHandler}>
+              Yes baby!
+            </button>
           </div>
         </div>
       </div>
