@@ -49,7 +49,15 @@ const getState = ({ getStore, getActions, setStore }) => {
       },
       createContact: (bodyContact) => {
         createOne(getStore().urlBase, bodyContact)
-          .then(response => console.log(response))
+          .then(
+            response => setStore({ contacts: [...getStore().contacts, response] }),
+            setStore({
+              alert: {
+                message: 'Contact added succssfull',
+                type: true
+              }
+            })
+          )
           .catch(err => setStore({
             alert: {
               message: err.message,
