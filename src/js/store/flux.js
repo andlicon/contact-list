@@ -38,6 +38,13 @@ const getState = ({ getStore, getActions, setStore }) => {
               type: false
             }
           }))
+
+        const actualContacts = getStore().contacts;
+        const newContacts = actualContacts.filter((element) => {
+          return element.id != id;
+        });
+
+        setStore({ ...getStore(), contacts: newContacts });
       },
       createContact: (bodyContact) => {
         console.log('creando')
