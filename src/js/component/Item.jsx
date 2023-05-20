@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { Context } from '../store/appContext';
 
 import '../../styles/item.css';
 import Modal from './Modal.jsx';
@@ -10,6 +11,7 @@ const Item = ({ fullName,
   id }) => {
 
   const modalId = `modalItem${id}`;
+  const { actions } = useContext(Context);
 
   return (
     <div className='item'>
@@ -33,7 +35,7 @@ const Item = ({ fullName,
         modalId={modalId}
         title='Are you sure?'
         body='If you delete this thing the entire universe will go down!'
-        acceptAction={() => { console.log('acepted') }} />
+        acceptAction={() => { actions.deleteContact(id) }} />
     </div>
   );
 };

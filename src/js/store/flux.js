@@ -1,4 +1,7 @@
-import { getAll } from '../util/apiUtil';
+import {
+  getAll,
+  deleteOne
+} from '../util/apiUtil';
 
 const getState = ({ getStore, getActions, setStore }) => {
   return {
@@ -14,10 +17,11 @@ const getState = ({ getStore, getActions, setStore }) => {
           .catch(err => setStore({ error: err.message }));
       },
       updateContact: (id) => {
-        console.log('actualizando');
+        console.log('actualizando', id);
       },
       deleteContact: (id) => {
-        console.log('eliminando');
+        deleteOne('a')
+          .then(wasDeleted => console.log(wasDeleted))
       },
       createContact: (bodyContact) => {
         console.log('creando')

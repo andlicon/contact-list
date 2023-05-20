@@ -17,4 +17,10 @@ export const getAll = async (source) => {
   }
 
   return allElements;
-}
+};
+
+export const deleteOne = async (source) => {
+  let wasDeleted = false;
+
+  return wasDeleted;
+};
