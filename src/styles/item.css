@@ -1,0 +1,76 @@
+.item {
+  /* box */
+  border: 1px solid gray;
+  border-bottom: none;
+  padding: 0.5em;
+  /* posicion */
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: flex-start;
+  position: relative;
+}
+
+.item:first-child {
+  border-bottom: 1px solid gray;
+}
+
+.item:nth-child(2) {
+  border-top: none;
+}
+
+.item:last-child {
+  border-bottom: 1px solid gray;
+}
+
+.item p {
+  margin: 0;
+  margin-bottom: 0.4em;
+}
+
+.item h2 {
+  margin-bottom: 0.5em;
+}
+
+.item__image {
+  /* caja */
+  width: 40%;
+  border-radius: 100%;
+  max-width: 10em;
+  margin-right: 2em;
+  /* estilo */
+  object-fit: cover;
+  object-position: center;
+  background-color: blue;
+}
+
+.item__interact {
+  /* caja */
+  padding: 0 2em;
+  /* position */
+  display: flex;
+  flex-flow: row nowrap;
+  align-self: center;
+  position: absolute;
+  gap: 1em;
+  right: 0;
+}
+
+.item__button {
+  /* caja */
+  border: none;
+  /* position */
+  /* estilo */
+  background-color: transparent;
+}
+
+.item__button i {
+  color: black;
+}
+
+.item__button .delete {
+  color: red;
+}
+
+.item__button .edit {
+  color: orange;
+}
