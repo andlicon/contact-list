@@ -19,7 +19,7 @@ const getState = ({ getStore, getActions, setStore }) => {
           .then(response => setStore({ contacts: response }))
           .catch(err => setStore({
             alert: {
-              mensaje: err.message,
+              message: err.message,
               type: false
             }
           }));
@@ -34,7 +34,7 @@ const getState = ({ getStore, getActions, setStore }) => {
           .then(wasDeleted => console.log(wasDeleted))
           .catch(err => setStore({
             alert: {
-              mensaje: err.message,
+              message: err.message,
               type: false
             }
           }))
