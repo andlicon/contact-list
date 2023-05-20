@@ -8,7 +8,7 @@ const getState = ({ getStore, getActions, setStore }) => {
     store: {
       contacts: [],
       agenda: 'andreszabala',
-      error: null,
+      alert: null,
       urlBase: 'https://assets.breatheco.de/apis/fake/contact/'
     },
     actions: {
@@ -17,7 +17,12 @@ const getState = ({ getStore, getActions, setStore }) => {
 
         getAll(getAllUrl)
           .then(response => setStore({ contacts: response }))
-          .catch(err => setStore({ error: err.message }));
+          .catch(err => setStore({
+            alert: {
+              mensaje: err.message,
+              type: false
+            }
+          }));
       },
       updateContact: (id) => {
         console.log('actualizando', id);
@@ -27,7 +32,12 @@ const getState = ({ getStore, getActions, setStore }) => {
 
         deleteOne(deleteUrl)
           .then(wasDeleted => console.log(wasDeleted))
-          .catch(err => setStore({ error: err.message }))
+          .catch(err => setStore({
+            alert: {
+              mensaje: err.message,
+              type: false
+            }
+          }))
       },
       createContact: (bodyContact) => {
         console.log('creando')
