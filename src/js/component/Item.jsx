@@ -1,12 +1,20 @@
 import React from 'react';
 
 import '../../styles/item.css';
+import Modal from './Modal.jsx';
 
 const Item = ({ fullName,
   address,
   email,
   phone,
   id }) => {
+
+  const modalId = `modalItem${id}`;
+
+  const handlerDelete = () => {
+
+  }
+
   return (
     <div className='item'>
       <img className='item__image' src="" alt="" />
@@ -17,9 +25,15 @@ const Item = ({ fullName,
         <p className="item__email">{email}</p>
       </div>
       <div className="item__interact">
-        <button className='item__button'><i className="bi bi-trash3 delete"></i></button>
+        <button
+          className='item__button'
+          data-toggle="modal"
+          data-target={`#${modalId}`}>
+          <i className="bi bi-trash3 delete"></i>
+        </button>
         <button className='item__button'><i className="bi bi-pencil-fill edit"></i></button>
       </div>
+      <Modal modalId={modalId} />
 
     </div>
   );

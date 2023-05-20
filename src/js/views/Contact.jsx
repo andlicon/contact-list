@@ -23,6 +23,7 @@ const Contact = () => {
                 address={element.address}
                 email={element.email}
                 phone={element.phone}
+                id={element.id}
               />
             )
           })
