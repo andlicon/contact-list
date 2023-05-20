@@ -33,6 +33,7 @@ const Modal = ({ modalId, title, body, acceptAction, cancelAction }) => {
             </button>
             <button
               type="button"
+              data-dismiss="modal"
               className="btn btn-primary"
               onClick={acceptHandler}>
               Yes baby!

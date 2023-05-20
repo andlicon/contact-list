@@ -8,11 +8,14 @@ const getState = ({ getStore, getActions, setStore }) => {
     store: {
       contacts: [],
       agenda: 'andreszabala',
-      error: null
+      error: null,
+      urlBase: 'https://assets.breatheco.de/apis/fake/contact/'
     },
     actions: {
       loadContact: () => {
-        getAll(`https://assets.breatheco.de/apis/fake/contact/agenda/${getStore().agenda}`)
+        const getAllUrl = `${getStore().urlBase}/agenda/${getStore().agenda}`;
+
+        getAll(getAllUrl)
           .then(response => setStore({ contacts: response }))
           .catch(err => setStore({ error: err.message }));
       },
@@ -20,8 +23,11 @@ const getState = ({ getStore, getActions, setStore }) => {
         console.log('actualizando', id);
       },
       deleteContact: (id) => {
-        deleteOne('a')
+        const deleteUrl = getStore().urlBase + id;
+
+        deleteOne(deleteUrl)
           .then(wasDeleted => console.log(wasDeleted))
+          .catch(err => setStore({ error: err.message }))
       },
       createContact: (bodyContact) => {
         console.log('creando')

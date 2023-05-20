@@ -22,5 +22,21 @@ export const getAll = async (source) => {
 export const deleteOne = async (source) => {
   let wasDeleted = false;
 
+  try {
+    const response = await fetch(source, {
+      method: 'DELETE',
+    });
+
+    let data = await response.json();
+
+    if (!response.ok) throw new Error(data.msg);
+
+    wasDeleted = true;
+  }
+  catch (error) {
+    throw new Error(error.message);
+  }
+
+
   return wasDeleted;
 };

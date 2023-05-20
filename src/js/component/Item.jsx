@@ -35,7 +35,7 @@ const Item = ({ fullName,
         modalId={modalId}
         title='Are you sure?'
         body='If you delete this thing the entire universe will go down!'
-        acceptAction={() => { actions.deleteContact(id) }} />
+        acceptAction={() => actions.deleteContact(id)} />
     </div>
   );
 };
