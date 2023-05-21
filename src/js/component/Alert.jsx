@@ -18,7 +18,7 @@ const Alerta = ({ mensaje, tipo }) => {
   useEffect(() => {
     setTimeout(() => {
       setVisible(false);
-
+      actions.throwAlert();
     }, 2500);
   }, []);
 

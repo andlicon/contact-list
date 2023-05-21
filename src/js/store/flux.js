@@ -21,7 +21,7 @@ const getState = ({ getStore, getActions, setStore }) => {
           .then(response => setStore({ contacts: response }))
           .catch(err => this.throwAlert(err.message, false))
       },
-      updateContact: (id, bodyContact) => {
+      updateContact: function (id, bodyContact) {
         const updateUrl = getStore().urlBase + id;
 
         updateOne(updateUrl, bodyContact)
