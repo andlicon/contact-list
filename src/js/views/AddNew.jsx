@@ -52,6 +52,7 @@ const AddNew = () => {
             name='full_name'
             onChange={handlerInputChange}
             value={state.full_name}
+            placeholder='Enter name'
             className='form-control w-100' />
         </div>
         <div className='form-group mb-2'>
@@ -64,6 +65,7 @@ const AddNew = () => {
             type='text'
             id='email'
             name='email'
+            placeholder='Enter email'
             onChange={handlerInputChange}
             value={state.email}
             className='form-control w-100' />
@@ -78,6 +80,7 @@ const AddNew = () => {
             type='text'
             id='phone'
             name='phone'
+            placeholder='Enter phone'
             onChange={handlerInputChange}
             value={state.phone}
             className='form-control w-100' />
@@ -92,6 +95,7 @@ const AddNew = () => {
             type='text'
             id='address'
             name='address'
+            placeholder='Enter address'
             onChange={handlerInputChange}
             value={state.address}
             className='form-control w-100' />
