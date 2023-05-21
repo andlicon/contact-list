@@ -1,5 +1,5 @@
 import React, { useState, useContext } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { Context } from '../store/appContext';
 
 const initialValues = {
@@ -19,6 +19,7 @@ const AddNew = () => {
     "address": initialValues.address
   });
 
+  const { id } = useParams(id);
   const { actions } = useContext(Context);
 
   const handlerInputChange = ({ target }) => {
@@ -32,7 +33,12 @@ const AddNew = () => {
   }
 
   const handlerOnClick = async () => {
-    actions.createContact(state);
+    if (id) {
+      actions.updateContact(id, state);
+    }
+    else {
+      actions.createContact(state);
+    }
   }
 
   return (
