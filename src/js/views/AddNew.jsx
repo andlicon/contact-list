@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { Context } from '../store/appContext';
 
@@ -18,7 +18,7 @@ const AddNew = () => {
     "agenda_slug": 'andreszabala',
     "address": initialValues.address
   });
-
+  // constants
   const { id } = useParams(id);
   const { actions } = useContext(Context);
 
@@ -32,7 +32,7 @@ const AddNew = () => {
     });
   }
 
-  const handlerOnClick = async () => {
+  let handlerOnClick = () => {
     if (id) {
       actions.updateContact(id, state);
     }

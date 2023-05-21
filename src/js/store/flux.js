@@ -26,6 +26,7 @@ const getState = ({ getStore, getActions, setStore }) => {
           }));
       },
       updateContact: (id, body) => {
+        console.log('a');
         const updateUrl = getStore().urlBase + id;
 
         console.log(updateUrl);
