@@ -14,36 +14,19 @@ const getState = ({ getStore, getActions, setStore }) => {
       urlBase: 'https://assets.breatheco.de/apis/fake/contact/'
     },
     actions: {
-      loadContact: () => {
+      loadContact: function () {
         const getAllUrl = `${getStore().urlBase}agenda/${getStore().agenda}`;
 
         get(getAllUrl)
           .then(response => setStore({ contacts: response }))
-          .catch(err => setStore({
-            alert: {
-              message: err.message,
-              type: false
-            }
-          }));
+          .catch(err => this.throwAlert(err.message, false))
       },
       updateContact: (id, bodyContact) => {
         const updateUrl = getStore().urlBase + id;
 
         updateOne(updateUrl, bodyContact)
-          .then(
-            setStore({
-              alert: {
-                message: 'Contact edited succssfull',
-                type: true
-              }
-            })
-          )
-          .catch(err => setStore({
-            alert: {
-              message: err.message,
-              type: false
-            }
-          }))
+          .then(this.throwAlert('contact updated sucessfull', true))
+          .catch(err => this.throwAlert(err.message, false))
 
         const actualContacts = getStore().contacts;
         const contactStatus = actualContacts.find((element) => (element.id == id));
@@ -51,20 +34,13 @@ const getState = ({ getStore, getActions, setStore }) => {
         for (const property in contactStatus) {
           if (bodyContact[property]) contactStatus[property] = bodyContact[property];
         }
-
-        console.log(contactStatus);
       },
-      deleteContact: (id) => {
+      deleteContact: function (id) {
         const deleteUrl = getStore().urlBase + id;
 
         deleteOne(deleteUrl)
-          .then(wasDeleted => console.log(wasDeleted))
-          .catch(err => setStore({
-            alert: {
-              message: err.message,
-              type: false
-            }
-          }))
+          .then(this.throwAlert('contact deleted sucessfull', true))
+          .catch(err => this.throwAlert(err.message, false))
 
         const actualContacts = getStore().contacts;
         const newContacts = actualContacts.filter((element) => {
@@ -73,25 +49,15 @@ const getState = ({ getStore, getActions, setStore }) => {
 
         setStore({ ...getStore(), contacts: newContacts });
       },
-      createContact: (bodyContact) => {
+      createContact: function (bodyContact) {
         createOne(getStore().urlBase, bodyContact)
           .then(
             response => setStore({ contacts: [...getStore().contacts, response] }),
-            setStore({
-              alert: {
-                message: 'Contact added succssfull',
-                type: true
-              }
-            })
+            this.throwAlert('Contact created sucessfull', true)
           )
-          .catch(err => setStore({
-            alert: {
-              message: err.message,
-              type: false
-            }
-          }))
+          .catch(err => this.throwAlert(err.message, false))
       },
-      getOneContact: async (id) => {
+      getOneContact: async function (id) {
         const getOneUrl = `${getStore().urlBase}${id}`;
 
         let oneContact = {
@@ -110,19 +76,15 @@ const getState = ({ getStore, getActions, setStore }) => {
           delete oneContact.created_at;
         }
         catch (error) {
-          setStore({
-            alert: {
-              message: error.message,
-              type: false
-            }
-          })
+          this.throwAlert(error.message, false)
         }
 
         return oneContact;
       },
       throwAlert: (newText, newType) => {
         let newAlert = null;
-        if (newText && newType) {
+
+        if (newText != undefined || newType != undefined) {
           newAlert = {
             message: newText,
             type: newType
