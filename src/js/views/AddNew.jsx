@@ -42,8 +42,10 @@ const AddNew = () => {
   }
 
   useEffect(() => {
-    actions.getOneContact(id)
-      .then(contact => setState(contact));
+    if (id) {
+      actions.getOneContact(id)
+        .then(contact => setState(contact));
+    }
   }, []);
 
   return (
