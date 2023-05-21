@@ -31,7 +31,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 
         updateOne(updateUrl, bodyContact)
           .then(
-            response => setStore({ contacts: [...getStore().contacts, response] }),
             setStore({
               alert: {
                 message: 'Contact edited succssfull',
@@ -45,6 +44,15 @@ const getState = ({ getStore, getActions, setStore }) => {
               type: false
             }
           }))
+
+        const actualContacts = getStore().contacts;
+        const contactStatus = actualContacts.find((element) => (element.id == id));
+
+        for (const property in contactStatus) {
+          if (bodyContact[property]) contactStatus[property] = bodyContact[property];
+        }
+
+        console.log(contactStatus);
       },
       deleteContact: (id) => {
         const deleteUrl = getStore().urlBase + id;
@@ -111,8 +119,20 @@ const getState = ({ getStore, getActions, setStore }) => {
         }
 
         return oneContact;
+      },
+      throwAlert: (newText, newType) => {
+        let newAlert = null;
+        if (newText && newType) {
+          newAlert = {
+            message: newText,
+            type: newType
+          }
+        }
+        setStore({
+          alert: newAlert
+        })
       }
-    }
+    },
   };
 };
 
