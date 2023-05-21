@@ -1,4 +1,5 @@
 import React, { useContext } from 'react';
+import { Link } from 'react-router-dom';
 import { Context } from '../store/appContext';
 
 import '../../styles/item.css';
@@ -19,20 +20,24 @@ const Item = ({ fullName,
       <img className='item__image'
         src={image ? image : 'https://upload.wikimedia.org/wikipedia/commons/9/99/Sample_User_Icon.png'}
         alt={`${fullName} image`} />
-      <div className="item__content">
+      <div className='item__content'>
         <h2 className='item__titulo'>{fullName}</h2>
-        <p className="item__addres">{address}</p>
-        <p className="item__phone">{phone}</p>
-        <p className="item__email">{email}</p>
+        <p className='item__addres'>{address}</p>
+        <p className='item__phone'>{phone}</p>
+        <p className='item__email'>{email}</p>
       </div>
-      <div className="item__interact">
+      <div className='item__interact'>
         <button
           className='item__button'
-          data-toggle="modal"
+          data-toggle='modal'
           data-target={`#${modalId}`}>
-          <i className="bi bi-trash3 delete"></i>
+          <i className='bi bi-trash3 delete'></i>
         </button>
-        <button className='item__button'><i className="bi bi-pencil-fill edit"></i></button>
+        <Link
+          className='item__button'
+          to={`/add/${id}`}>
+          <i className='bi bi-pencil-fill edit'></i>
+        </Link>
       </div>
       <Modal
         modalId={modalId}
