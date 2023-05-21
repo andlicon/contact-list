@@ -1,7 +1,8 @@
 import {
   get,
   deleteOne,
-  createOne
+  createOne,
+  updateOne
 } from '../util/apiUtil';
 
 const getState = ({ getStore, getActions, setStore }) => {
@@ -25,10 +26,25 @@ const getState = ({ getStore, getActions, setStore }) => {
             }
           }));
       },
-      updateContact: (id, body) => {
+      updateContact: (id, bodyContact) => {
         const updateUrl = getStore().urlBase + id;
 
-        console.log(updateUrl);
+        updateOne(updateUrl, bodyContact)
+          .then(
+            response => setStore({ contacts: [...getStore().contacts, response] }),
+            setStore({
+              alert: {
+                message: 'Contact edited succssfull',
+                type: true
+              }
+            })
+          )
+          .catch(err => setStore({
+            alert: {
+              message: err.message,
+              type: false
+            }
+          }))
       },
       deleteContact: (id) => {
         const deleteUrl = getStore().urlBase + id;

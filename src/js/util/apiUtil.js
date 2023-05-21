@@ -60,3 +60,24 @@ export const createOne = async (source, element) => {
     throw new Error(error.message)
   }
 }
+
+export const updateOne = async (source, element) => {
+  try {
+    const response = await fetch(source, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(element)
+    });
+
+    const data = await response.json();
+
+    if (!response.ok) throw new Error(data.msg);
+
+    return data;
+  }
+  catch (error) {
+    throw new Error(error.message)
+  }
+}
