@@ -20,7 +20,7 @@ const AddNew = () => {
   });
   // constants
   const { id } = useParams(id);
-  const { actions } = useContext(Context);
+  const { store, actions } = useContext(Context);
 
   const handlerInputChange = ({ target }) => {
     const input = target.name;
@@ -40,6 +40,11 @@ const AddNew = () => {
       actions.createContact(state);
     }
   }
+
+  useEffect(() => {
+    actions.getOneContact(id)
+      .then(contact => setState(contact));
+  }, []);
 
   return (
     <>

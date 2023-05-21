@@ -1,5 +1,7 @@
-export const getAll = async (source) => {
+export const get = async (source) => {
   let allElements = [];
+
+  console.log(source);
 
   try {
     const response = await fetch(source);

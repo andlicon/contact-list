@@ -1,5 +1,5 @@
 import {
-  getAll,
+  get,
   deleteOne,
   createOne
 } from '../util/apiUtil';
@@ -14,9 +14,9 @@ const getState = ({ getStore, getActions, setStore }) => {
     },
     actions: {
       loadContact: () => {
-        const getAllUrl = `${getStore().urlBase}/agenda/${getStore().agenda}`;
+        const getAllUrl = `${getStore().urlBase}agenda/${getStore().agenda}`;
 
-        getAll(getAllUrl)
+        get(getAllUrl)
           .then(response => setStore({ contacts: response }))
           .catch(err => setStore({
             alert: {
@@ -26,7 +26,6 @@ const getState = ({ getStore, getActions, setStore }) => {
           }));
       },
       updateContact: (id, body) => {
-        console.log('a');
         const updateUrl = getStore().urlBase + id;
 
         console.log(updateUrl);
@@ -67,6 +66,35 @@ const getState = ({ getStore, getActions, setStore }) => {
               type: false
             }
           }))
+      },
+      getOneContact: async (id) => {
+        const getOneUrl = `${getStore().urlBase}${id}`;
+
+        let oneContact = {
+          full_name: '',
+          address: '',
+          phone: '',
+          email: '',
+          agenda_slug: getStore().agenda
+        };
+
+        try {
+          const response = await get(getOneUrl)
+          oneContact = await response;
+
+          delete oneContact.id;
+          delete oneContact.created_at;
+        }
+        catch (error) {
+          setStore({
+            alert: {
+              message: error.message,
+              type: false
+            }
+          })
+        }
+
+        return oneContact;
       }
     }
   };
